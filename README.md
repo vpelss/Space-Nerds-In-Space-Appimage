@@ -1,1 +1,54 @@
 # Space-Nerds-In-Space-Appimage
+
+#My build instructions to create a Linux AppImage distributio for Space Nerds in Space
+#https://github.com/smcameron/space-nerds-in-space
+#I built on a modern linux installation (Zorin), but best AppImage practices suggest building on an older CentOs or equivalent for wider compatibility.
+#My github action build was build using ubuntu 20.04
+
+#----------------
+
+#As per the following:
+#https://smcameron.github.io/space-nerds-in-space/
+
+git clone https://github.com/smcameron/space-nerds-in-space.git
+cd space-nerds-in-space-master
+util/install_dependencies
+# I said yes to all
+make
+make update-assets
+
+mkdir -p ../SpaceNerdsInSpaceDir/usr/bin
+
+cp -r ../space-nerds-in-space/bin ../SpaceNerdsInSpaceDir/usr/bin
+cp ../space-nerds-in-space/snis_launcher   ../SpaceNerdsInSpaceDir/usr/bin
+cp -r ../space-nerds-in-space/share ../SpaceNerdsInSpaceDir/usr/bin
+#cp ../space-nerds-in-space/snis.desktop ../SpaceNerdsInSpaceDir
+
+git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
+
+cp Space-Nerds-In-Space-Appimage/AppRun ../SpaceNerdsInSpaceDir
+cp Space-Nerds-In-Space-Appimage/icon.png ../SpaceNerdsInSpaceDir
+cp Space-Nerds-In-Space-Appimage/snis.desktop ../SpaceNerdsInSpaceDir
+
+#set permissions
+chmod +x ../SpaceNerdsInSpaceDir/AppRun 
+chmod +x ../SpaceNerdsInSpaceDir/usr/bin/snis_launcher
+#chmod +x ../SpaceNerdsInSpaceDir/usr/bin/bin/*
+chmod +x ../SpaceNerdsInSpaceDir/snis.desktop
+
+# get linuxdeploy's AppImage if you don’t have it
+# https://github.com/linuxdeploy/linuxdeploy
+# https://github.com/linuxdeploy/linuxdeploy/releases/
+wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+chmod +x linuxdeploy-x86_64.AppImage
+
+#run linuxdeploy and fix up generate an AppDir (add lib) and build AppImage 
+ARCH=x86_64 ./linuxdeploy-x86_64.AppImage -v 0 --appdir ../SpaceNerdsInSpaceDir --output appimage
+
+chmod 777 Space_Nerds_in_Space-x86_64.AppImage
+
+#run it
+./Space_Nerds_in_Space-x86_64.AppImage
+
+
+
