@@ -2,5 +2,7 @@
 
 see instructions.txt
 
+https://smcameron.github.io/space-nerds-in-space
+
 
 
