@@ -18,9 +18,9 @@ make update-assets
 mkdir -p ../SpaceNerdsInSpaceDir/usr/bin
 
 cp -r ../space-nerds-in-space/bin ../SpaceNerdsInSpaceDir/usr/bin
+cp -r ../space-nerds-in-space/*.png ../SpaceNerdsInSpaceDir/usr/bin
 cp ../space-nerds-in-space/snis_launcher   ../SpaceNerdsInSpaceDir/usr/bin
 cp -r ../space-nerds-in-space/share ../SpaceNerdsInSpaceDir/usr/bin
-#cp ../space-nerds-in-space/snis.desktop ../SpaceNerdsInSpaceDir
 
 git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
 
@@ -31,12 +31,10 @@ cp Space-Nerds-In-Space-Appimage/snis.desktop ../SpaceNerdsInSpaceDir
 #set permissions
 chmod +x ../SpaceNerdsInSpaceDir/AppRun 
 chmod +x ../SpaceNerdsInSpaceDir/usr/bin/snis_launcher
-#chmod +x ../SpaceNerdsInSpaceDir/usr/bin/bin/*
+chmod +x ../SpaceNerdsInSpaceDir/usr/bin/bin/*
 chmod +x ../SpaceNerdsInSpaceDir/snis.desktop
 
 # get linuxdeploy's AppImage if you don’t have it
-# https://github.com/linuxdeploy/linuxdeploy
-# https://github.com/linuxdeploy/linuxdeploy/releases/
 wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
 chmod +x linuxdeploy-x86_64.AppImage
 
