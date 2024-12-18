@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Space Nerds in Space
+GenericName=Space Nerds in Space
+Comment=Networked spaceship bridge simulator
+Exec=snis_client
+Icon=icon
+Terminal=false
+Type=Application
+Categories=Game;
