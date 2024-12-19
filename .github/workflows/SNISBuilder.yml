@@ -19,8 +19,7 @@ jobs:
 
     - name: Configure MakeIt
       run: |      
-        git clone https://github.com/smcameron/space-nerds-in-space.git
-        cd space-nerds-in-space
+        sudo apt install libfuse2 #required to build AppImage
         sudo apt-get install build-essential;
         sudo apt-get install portaudio19-dev;
         sudo apt-get install libpng-dev;
@@ -39,6 +38,8 @@ jobs:
         # as the version in the repos tends to be out of date.
         #sudo apt-get install git; # Version control, useful if you're hacking on the game
         #sudo apt-get install stgit; # Useful for making patches if you're hacking on the game. It's like "quilt" but on top of git.
+        git clone https://github.com/smcameron/space-nerds-in-space.git
+        cd space-nerds-in-space
         make
         make update-assets
         mkdir -p ../SpaceNerdsInSpaceDir/usr/bin
