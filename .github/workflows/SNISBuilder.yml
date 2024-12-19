@@ -1,7 +1,7 @@
 name: SNISBuilder
 
 on: workflow_dispatch
-     
+    
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
@@ -58,8 +58,7 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: 
-        # get linuxdeploy's AppImage if you don’t have it
+      run: |
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         chmod +x linuxdeploy-x86_64.AppImage
         #run linuxdeploy and fix up generate an AppDir (add lib) and build AppImage 
@@ -73,4 +72,3 @@ jobs:
       with:
         name: Space_Nerds_in_Space-x86_64.AppImage 
         path: Space_Nerds_in_Space-x86_64.AppImage 
-
