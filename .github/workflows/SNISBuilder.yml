@@ -26,6 +26,7 @@ jobs:
         make update-assets
         cd ../
         mkdir -p SpaceNerdsInSpaceDir/usr/bin
+        mkdir -p SpaceNerdsInSpaceDir/usr/lib
         cp -r space-nerds-in-space/bin SpaceNerdsInSpaceDir/usr/bin
         cp -r space-nerds-in-space/*.png SpaceNerdsInSpaceDir/usr/bin
         cp space-nerds-in-space/snis_launcher SpaceNerdsInSpaceDir/usr/bin
