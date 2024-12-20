@@ -19,43 +19,27 @@ jobs:
 
     - name: Configure MakeIt
       run: |      
-        sudo apt-get install build-essential;
-        sudo apt-get install portaudio19-dev;
-        sudo apt-get install libpng-dev;
-        sudo apt-get install libvorbis-dev;
-        sudo apt-get install libsdl2-dev;
-        sudo apt-get install libsdl2-2.0-0;
-        sudo apt-get install liblua5.2-dev;
-        sudo apt-get install libglew-dev;
-        sudo apt-get install libttspico-utils; # optional, for text to speech
-        sudo apt-get install sox; # for "play" command, used by text to speech
-        # (The following are optional)
-        sudo apt-get install espeak; # optional alternative to libttspico-utils
-        sudo apt-get install alsa-utils; # optional alternative to sox, for "aplay" command
-        sudo apt-get install openscad; # optional, only needed if you intend to work on 3D models.
-        # Also, it is recommended to get it from http://www.openscad.org/downloads.html
-        # as the version in the repos tends to be out of date.
-        #sudo apt-get install git; # Version control, useful if you're hacking on the game
-        #sudo apt-get install stgit; # Useful for making patches if you're hacking on the game. It's like "quilt" but on top of git.
+        sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
         git clone https://github.com/smcameron/space-nerds-in-space.git
         cd space-nerds-in-space
         make
         make update-assets
-        mkdir -p ../SpaceNerdsInSpaceDir/usr/bin
-        cp -r ../space-nerds-in-space/bin ../SpaceNerdsInSpaceDir/usr/bin
-        cp -r ../space-nerds-in-space/*.png ../SpaceNerdsInSpaceDir/usr/bin
-        cp ../space-nerds-in-space/snis_launcher   ../SpaceNerdsInSpaceDir/usr/bin
-        cp -r ../space-nerds-in-space/share ../SpaceNerdsInSpaceDir/usr/bin
+        cd ../
+        mkdir -p SpaceNerdsInSpaceDir/usr/bin
+        cp -r space-nerds-in-space/bin SpaceNerdsInSpaceDir/usr/bin
+        cp -r space-nerds-in-space/*.png SpaceNerdsInSpaceDir/usr/bin
+        cp space-nerds-in-space/snis_launcher SpaceNerdsInSpaceDir/usr/bin
+        cp -r space-nerds-in-space/share SpaceNerdsInSpaceDir/usr/bin
         git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
-        cp Space-Nerds-In-Space-Appimage/AppRun ../SpaceNerdsInSpaceDir
-        cp Space-Nerds-In-Space-Appimage/icon.png ../SpaceNerdsInSpaceDir
-        cp Space-Nerds-In-Space-Appimage/snis.desktop ../SpaceNerdsInSpaceDir
+        cp Space-Nerds-In-Space-Appimage/AppRun SpaceNerdsInSpaceDir
+        cp Space-Nerds-In-Space-Appimage/icon.png SpaceNerdsInSpaceDir
+        cp Space-Nerds-In-Space-Appimage/snis.desktop SpaceNerdsInSpaceDir
         #set permissions
-        chmod +x ../SpaceNerdsInSpaceDir/AppRun 
-        chmod +x ../SpaceNerdsInSpaceDir/usr/bin/snis_launcher
-        chmod +x ../SpaceNerdsInSpaceDir/usr/bin/bin/*
-        chmod +x ../SpaceNerdsInSpaceDir/snis.desktop
-        ldd ~/SpaceNerdsInSpaceDir/usr/bin/bin/snis_client | awk 'NF == 4 { system("cp " $3 " ~/SpaceNerdsInSpaceDir/usr/lib/") }'
+        chmod +x SpaceNerdsInSpaceDir/AppRun 
+        chmod +x SpaceNerdsInSpaceDir/usr/bin/snis_launcher
+        chmod +x SpaceNerdsInSpaceDir/usr/bin/bin/*
+        chmod +x SpaceNerdsInSpaceDir/snis.desktop
+        ldd SpaceNerdsInSpaceDir/usr/bin/bin/snis_client | awk 'NF == 4 { system("cp " $3 " SpaceNerdsInSpaceDir/usr/lib/") }'
 
     - name: Build
       # Build your program with the given configuration
@@ -63,7 +47,6 @@ jobs:
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         chmod +x linuxdeploy-x86_64.AppImage
         #run linuxdeploy and fix up generate an AppDir (add lib) and build AppImage 
-        ls
         ARCH=x86_64 ./linuxdeploy-x86_64.AppImage -v 0 --appdir SpaceNerdsInSpaceDir --output appimage
         chmod 777 Space_Nerds_in_Space-x86_64.AppImage
         #run it
