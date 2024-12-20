@@ -41,6 +41,9 @@ jobs:
         chmod +x SpaceNerdsInSpaceDir/usr/bin/bin/*
         chmod +x SpaceNerdsInSpaceDir/snis.desktop
         ldd SpaceNerdsInSpaceDir/usr/bin/bin/snis_client | awk 'NF == 4 { system("cp " $3 " SpaceNerdsInSpaceDir/usr/lib/") }'
+        ls
+        ls SpaceNerdsInSpaceDir/usr/lib/
+        echo "::stop-commands::$stopMarker"
 
     - name: Build
       # Build your program with the given configuration
