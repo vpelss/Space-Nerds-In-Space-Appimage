@@ -23,7 +23,7 @@ cp -r space-nerds-in-space/*.png SpaceNerdsInSpaceDir/usr/bin
 cp space-nerds-in-space/snis_launcher SpaceNerdsInSpaceDir/usr/bin
 cp -r space-nerds-in-space/share SpaceNerdsInSpaceDir/usr/bin
 
-ldd ~/SpaceNerdsInSpaceDir/usr/bin/bin/snis_client | awk 'NF == 4 { system("cp " $3 " ~/SpaceNerdsInSpaceDir/usr/lib/") }'
+ldd SpaceNerdsInSpaceDir/usr/bin/bin/snis_client | awk 'NF == 4 { system("cp " $3 "SpaceNerdsInSpaceDir/usr/lib/") }'
 
 git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
 
