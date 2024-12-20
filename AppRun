@@ -6,6 +6,7 @@ echo ${HERE}
 EXEC="${HERE}/usr/bin" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
 cd ${EXEC}
 echo ${EXEC}
+export LD_LIBRARY_PATH="${HERE}/usr/lib/"
 export SNIS_LOG_DIR=/tmp/snis_log_dir
 mkdir $SNIS_LOG_DIR
 exec ./snis_launcher  #run our app
