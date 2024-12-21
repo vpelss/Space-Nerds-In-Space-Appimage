@@ -69,7 +69,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: Space_Nerds_in_Space-x86_64.AppImage
+        file: Me.AppImage
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
