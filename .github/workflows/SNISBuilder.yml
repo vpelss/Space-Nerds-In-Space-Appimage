@@ -20,8 +20,7 @@ jobs:
 
     - name: Configure MakeIt
       run: |      
-        sudo add-apt-repository universe
-        sudo apt install libfuse2t64
+        sudo apt install libfuse2 #required to build AppImage
         sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
         git clone --depth 1 https://github.com/smcameron/space-nerds-in-space.git
         SnisGitDir='space-nerds-in-space'
