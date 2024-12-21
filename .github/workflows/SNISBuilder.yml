@@ -63,3 +63,13 @@ jobs:
       with:
         name: Space_Nerds_in_Space-x86_64.AppImage 
         path: Space_Nerds_in_Space-x86_64.AppImage 
+ 
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: target/release/mything
+        asset_name: mything
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "This is my release text"
