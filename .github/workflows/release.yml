@@ -2,7 +2,7 @@ name: SNISRelease
 
 on: workflow_dispatch
 
- assets:
+assets:
     name: upload assets
     runs-on: ubuntu-latest
     permissions:
