@@ -69,5 +69,5 @@ jobs:
       uses: softprops/action-gh-release@v2
       #if: ${{startsWith(github.ref, 'refs/tags/') }}
       with:
-          tag_name: Newest
+          tag_name: "version test : don't use"
           files: Space_Nerds_in_Space-x86_64.AppImage 
