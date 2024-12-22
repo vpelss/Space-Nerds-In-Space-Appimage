@@ -35,7 +35,8 @@ jobs:
         cp -r $SnisGitDir/*.png $AppDir/usr/bin
         cp $SnisGitDir/snis_launcher $AppDir/usr/bin
         cp -r $SnisGitDir/share $AppDir/usr/bin
-        ldd $AppDir/usr/bin/bin/snis_client | awk -v AppDir=$AppDir  'NF == 4 { system("cp " $3 " " AppDir "/usr/lib/") }'
+        export AppDirAWK="$AppDir"
+        ldd $AppDir/usr/bin/bin/snis_client | awk  'NF == 4 {  system("cp " $3 " " ENVIRON["AppDirAWK"]"/usr/lib/") }'
         #rm $AppDir/usr/lib/libc.*
         git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
         SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage'
