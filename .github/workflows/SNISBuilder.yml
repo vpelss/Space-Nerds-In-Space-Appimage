@@ -39,7 +39,7 @@ jobs:
         ldd $AppDir/usr/bin/bin/snis_client | awk  'NF == 4 {  system("cp " $3 " " ENVIRON["AppDirAWK"]"/usr/lib/") }'
         
         #package an internal mkdir and sh to fix libc issues
-        mkdir $AppDir/bin
+        #mkdir $AppDir/bin
         #cp /bin/sh $AppDir/bin
         #cp /bin/mkdir $AppDir/bin
         #chmod +x $AppDir/bin/sh
@@ -50,7 +50,7 @@ jobs:
         SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage'
 
         #fix sh libc issue with bash version of launcher
-        cp $SnisAppImageToolsDir/snis_launcher $AppDir/usr/bin
+        #cp $SnisAppImageToolsDir/snis_launcher $AppDir/usr/bin
 
         cp $SnisAppImageToolsDir/AppRun $AppDir
         cp $SnisAppImageToolsDir/icon.png $AppDir
