@@ -3,11 +3,9 @@ SELF=$(readlink -f "$0") #will set SELF to our AppRun path with AppRun appended
 echo ${SELF}
 HERE=${SELF%/*} #will set HERE to path without AppRun
 echo ${HERE}
-EXEC="${HERE}/usr/bin" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
+EXEC="${HERE}/usr" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
 cd ${EXEC}
 echo ${EXEC}
-#export LD_LIBRARY_PATH="${HERE}/usr/lib/"
 export SNIS_LOG_DIR=/tmp/snis_log_dir
-#../../bin/mkdir $SNIS_LOG_DIR #use mkdir brom build system to avoid libc issues
 mkdir $SNIS_LOG_DIR #use mkdir brom build system to avoid libc issues
 exec ./snis_launcher  #run our app
