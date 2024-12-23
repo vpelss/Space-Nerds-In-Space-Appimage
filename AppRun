@@ -8,5 +8,6 @@ cd ${EXEC}
 echo ${EXEC}
 export LD_LIBRARY_PATH="${HERE}/usr/lib/"
 export SNIS_LOG_DIR=/tmp/snis_log_dir
-../../bin/mkdir $SNIS_LOG_DIR #use mkdir brom build system to avoid libc issues
+#../../bin/mkdir $SNIS_LOG_DIR #use mkdir brom build system to avoid libc issues
+mkdir $SNIS_LOG_DIR #use mkdir brom build system to avoid libc issues
 exec ./snis_launcher  #run our app
