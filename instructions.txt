@@ -1,3 +1,7 @@
+#issues
+#snis uses sh launcher. so if build system sh uses different libc… error
+#my AppRun uses mkdir so if build system mkdir uses different libc.. error. I have copied build system mkdir to AppImage to 'fix'
+
 #My build instructions to create a Linux AppImage distribution for Space Nerds in Space
 #https://github.com/smcameron/space-nerds-in-space
 #My github action build was build using ubuntu 22.04
@@ -5,50 +9,71 @@
 #As per the following:
 #https://smcameron.github.io/space-nerds-in-space/
 
+sudo apt install libfuse2 #required to build AppImage
+
 #util/install_dependencies # I said yes to all
 sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
 
 git clone --depth 1 https://github.com/smcameron/space-nerds-in-space.git
 SnisGitDir='space-nerds-in-space'
 cd $SnisGitDir
-
 make
 make update-assets
-
 cd ..
+
 AppDir='SpaceNerdsInSpaceDir'
 mkdir -p $AppDir/usr/bin
 mkdir -p $AppDir/usr/lib
-cp -r $SnisGitDir/bin $AppDir/usr/bin
-cp -r $SnisGitDir/*.png $AppDir/usr/bin
-cp $SnisGitDir/snis_launcher $AppDir/usr/bin
-cp -r $SnisGitDir/share $AppDir/usr/bin
-#get pesky lib files
-ldd $AppDir/usr/bin/bin/snis_client | awk -v AppDir=$AppDir  'NF == 4 { echo system("cp " $3 " " AppDir "/usr/lib/") }'
-#rm $AppDir/usr/lib/libc.*
+cp -r $SnisGitDir/bin $AppDir/usr
+#cp -r $SnisGitDir/*.png $AppDir/usr/bin
+cp $SnisGitDir/snis_launcher $AppDir/usr
+cp -r $SnisGitDir/share $AppDir/usr
 
 git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
 SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage'
 
-cp $SnisAppImageToolsDir/AppRun SpaceNerdsInSpaceDir
-cp $SnisAppImageToolsDir/icon.png SpaceNerdsInSpaceDir
-cp $SnisAppImageToolsDir/snis.desktop SpaceNerdsInSpaceDir
+cp $SnisAppImageToolsDir/AppRun $AppDir
+cp $SnisAppImageToolsDir/icon.png $AppDir
+cp $SnisAppImageToolsDir/snis.desktop $AppDir
 
 #set permissions
 chmod +x $AppDir/AppRun 
-chmod +x $AppDir/usr/bin/snis_launcher
-chmod +x $AppDir/usr/bin/bin/*
+chmod +x $AppDir/usr/snis_launcher
+chmod +x $AppDir/usr/bin/*
 chmod +x $AppDir/snis.desktop
 
 # get linuxdeploy's AppImage if you don’t have it
 wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
 chmod +x linuxdeploy-x86_64.AppImage
 
-#run linuxdeploy and fix up generate an AppDir (add lib) and build AppImage 
-ARCH=x86_64 ./linuxdeploy-x86_64.AppImage --appdir=$AppDir --output appimage
+ARCH=x86_64 ./linuxdeploy-x86_64.AppImage --executable=$AppDir/usr/bin/snis_client --executable=$AppDir/usr/bin/check-endianness --executable=$AppDir/usr/bin/lsssgl --executable=$AppDir/usr/bin/snis_arduino --executable=$AppDir/usr/bin/snis_multiverse --executable=$AppDir/usr/bin/snis_server --executable=$AppDir/usr/bin/ssgl_server --appdir $AppDir --output appimage
 
 chmod 777 Space_Nerds_in_Space-x86_64.AppImage
 
 #run it
 printf '0' |./Space_Nerds_in_Space-x86_64.AppImage
+
+
+
+#----------------------
+
+#get pesky lib files
+export AppDirAWK="$AppDir"
+#ldd $AppDir/usr/bin/snis_client | awk  'NF == 4 {  system("cp " $3 " " ENVIRON["AppDirAWK"]"/usr/lib/") }'
+#ldd $AppDir/usr/bin/snis_client | awk  'NF == 4 {  system("echo cp " $3 " " ENVIRON["AppDirAWK"]"/usr/lib/") }'
+#rm $AppDir/usr/lib/libc.*
+
+#LOCLIBC= echo `gcc --print-file-name=libc.so.6`
+#ln -s LOCLIBC $AppDir/usr/lib/libc.so.6 
+
+#package an internal mkdir and sh to fix libc issues
+#mkdir $AppDir/bin
+#cp /bin/sh $AppDir/bin
+#cp /bin/mkdir $AppDir/bin
+#chmod +x $AppDir/bin/sh
+#chmod +x $AppDir/bin/mkdir
+
+#fix sh libc issue with bash version of launcher
+#cp $SnisAppImageToolsDir/snis_launcher $AppDir/usr/bin
+
 
