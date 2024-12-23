@@ -40,9 +40,9 @@ jobs:
         
         #package an internal mkdir and sh to fix libc issues
         mkdir $AppDir/bin
-        #cp /bin/sh $AppDir/bin
+        cp /bin/sh $AppDir/bin
         cp /bin/mkdir $AppDir/bin
-        #chmod +x $AppDir/bin/sh
+        chmod +x $AppDir/bin/sh
         chmod +x $AppDir/bin/mkdir
         #rm $AppDir/usr/lib/libc.*
         
