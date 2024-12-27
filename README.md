@@ -1,20 +1,21 @@
 # Space-Nerds-In-Space-Appimage
 
-I am attempting to create an AppImage for Space Nerds In Space so you don't have to build it to play this fine game.
+I have created a Linux AppImage for Space Nerds In Space so you don't have to comile it.
 
 My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appimage/releases/tag/Newest
+
+Note: It must be started in a Linux terminal
+
+- Download.
+- chmod +x Space_Nerds_in_Space-x86_64.AppImage
+- ./Space_Nerds_in_Space-x86_64.AppImage
+
 
 Tested succesfuly on:
 - q4OS
 - mint cinnamon
 - mint xfce
 - MiniOS
-
-Note: It must be started in a terminal!
-
-1. Download.
-2. chmod +x Space_Nerds_in_Space-x86_64.AppImage
-3. ./Space_Nerds_in_Space-x86_64.AppImage
 
 How it was built:
 
