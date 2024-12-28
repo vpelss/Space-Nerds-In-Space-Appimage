@@ -1,12 +1,13 @@
 # Space-Nerds-In-Space-Appimage
 
-I have created a Linux AppImage for Space Nerds In Space so you don't have to comile it.
+I have created a Linux AppImage for Space Nerds In Space for those who can't compile it.
 
 My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appimage/releases/tag/Newest
 
 Note: It must be started in a Linux terminal
 
-- Download.
+- Download
+- open terminal at file path
 - chmod +x Space_Nerds_in_Space-x86_64.AppImage
 - ./Space_Nerds_in_Space-x86_64.AppImage
 
