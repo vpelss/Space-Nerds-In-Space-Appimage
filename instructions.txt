@@ -1,7 +1,3 @@
-#issues
-#snis uses sh launcher. so if build system sh uses different libc… error
-#my AppRun uses mkdir so if build system mkdir uses different libc.. error. I have copied build system mkdir to AppImage to 'fix'
-
 #My build instructions to create a Linux AppImage distribution for Space Nerds in Space
 #https://github.com/smcameron/space-nerds-in-space
 #My github action build was build using ubuntu 22.04
@@ -52,28 +48,3 @@ chmod 777 Space_Nerds_in_Space-x86_64.AppImage
 
 #run it
 printf '0' |./Space_Nerds_in_Space-x86_64.AppImage
-
-
-
-#----------------------
-
-#get pesky lib files
-export AppDirAWK="$AppDir"
-#ldd $AppDir/usr/bin/snis_client | awk  'NF == 4 {  system("cp " $3 " " ENVIRON["AppDirAWK"]"/usr/lib/") }'
-#ldd $AppDir/usr/bin/snis_client | awk  'NF == 4 {  system("echo cp " $3 " " ENVIRON["AppDirAWK"]"/usr/lib/") }'
-#rm $AppDir/usr/lib/libc.*
-
-#LOCLIBC= echo `gcc --print-file-name=libc.so.6`
-#ln -s LOCLIBC $AppDir/usr/lib/libc.so.6 
-
-#package an internal mkdir and sh to fix libc issues
-#mkdir $AppDir/bin
-#cp /bin/sh $AppDir/bin
-#cp /bin/mkdir $AppDir/bin
-#chmod +x $AppDir/bin/sh
-#chmod +x $AppDir/bin/mkdir
-
-#fix sh libc issue with bash version of launcher
-#cp $SnisAppImageToolsDir/snis_launcher $AppDir/usr/bin
-
-
