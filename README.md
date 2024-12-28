@@ -19,7 +19,7 @@ Tested succesfuly on:
 
 How it was built:
 
-see instructions.txt
+see [instructions.txt](https://github.com/vpelss/Space-Nerds-In-Space-Appimage/blob/main/instructions.txt)
 
 Learn more about Space Nerds in Space:
 
