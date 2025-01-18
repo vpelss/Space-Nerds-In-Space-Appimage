@@ -6,6 +6,8 @@ echo ${HERE}
 EXEC="${HERE}/usr" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
 cd ${EXEC}
 echo ${EXEC}
-export SNIS_LOG_DIR=/tmp/snis_log_dir
-mkdir $SNIS_LOG_DIR #use mkdir brom build system to avoid libc issues
+export SNIS_LOG_DIR=~/.snis/snis_log_dir
+mkdir -p $SNIS_LOG_DIR 
+export SNIS_DB_DIR=~/.snis/snis_db_dir
+mkdir -p $SNIS_DB_DIR
 exec ./snis_launcher  #run our app
