@@ -28,7 +28,7 @@ jobs:
         SnisGitDir='space-nerds-in-space'
         cd $SnisGitDir
         make
-        make update-assets
+        #make update-assets
         cd ..
         
         AppDir='SpaceNerdsInSpaceDir'
