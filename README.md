@@ -1,8 +1,10 @@
 # Space-Nerds-In-Space-Appimage
 
-Learn more about Space Nerds in Space:
+Space Nerds in Space is a linux only space bridge simulator.
 
-https://smcameron.github.io/space-nerds-in-space
+You can build it yourself here:
+
+https://smcameron.github.io/space-nerds-in-space/
 
 I have created a Linux AppImage for Space Nerds In Space for those who can't compile it.
 
