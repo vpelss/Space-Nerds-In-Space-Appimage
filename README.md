@@ -34,10 +34,10 @@ See below for distributions that are having issues. You might need to install so
 
 openSUSE
 
-sudo zypper install libfuse2
-sudo zypper install xorg-x11
-sudo zypper install Mesa
-sudo zypper install libportaudio2
+- sudo zypper install libfuse2
+- sudo zypper install xorg-x11
+- sudo zypper install Mesa
+- sudo zypper install libportaudio2
 
 Slakware
 
