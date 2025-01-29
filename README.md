@@ -22,15 +22,14 @@ Tested succesfuly on:
 - mint cinnamon
 - mint xfce
 - MiniOS
+- for distributions that are having issues, see https://github.com/vpelss/snis_flatpak/blob/main/README.md  You might need to install some libraries.
 
-How it was built:
-
-see [instructions.txt](https://github.com/vpelss/Space-Nerds-In-Space-Appimage/blob/main/instructions.txt)
+How it was built: [instructions.txt](https://github.com/vpelss/Space-Nerds-In-Space-Appimage/blob/main/instructions.txt)
 
 We also have a flatpak version:
 https://github.com/vpelss/snis_flatpak
 
-See https://github.com/vpelss/snis_flatpak/blob/main/README.md for distributions that are having issues. You might need to install some libraries.
+
 
 
 
