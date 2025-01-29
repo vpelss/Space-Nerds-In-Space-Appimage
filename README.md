@@ -30,4 +30,21 @@ see [instructions.txt](https://github.com/vpelss/Space-Nerds-In-Space-Appimage/b
 We also have a flatpak version:
 https://github.com/vpelss/snis_flatpak
 
+See below for distributions that are having issues. You might need to install some libraries.
+
+openSUSE
+
+sudo zypper install libfuse2
+sudo zypper install xorg-x11
+sudo zypper install Mesa
+sudo zypper install libportaudio2
+
+Slakware
+
+Debian
+
+Arch
+
+Kali
+
 
