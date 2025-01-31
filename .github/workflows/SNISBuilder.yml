@@ -40,6 +40,8 @@ jobs:
         #cp -r $SnisGitDir/share $AppDir/usr
         #copy it all as there are tools everywhere
         cp -r $SnisGitDir/* $AppDir/usr
+        ls -l $AppDir/usr
+        ls -l $AppDir/usr/bin
         
     - name: Get icons and desktop file
       run: |        
