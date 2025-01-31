@@ -27,8 +27,8 @@ jobs:
         #git checkout 991ea45f4a117e40cfb315e83389f360311c4850
         SnisGitDir='space-nerds-in-space'
         cd $SnisGitDir
-        make
-        #make update-assets
+        make WITHVOICECHAT=no
+        rm -r object_files
         cd ..
         
         AppDir='SpaceNerdsInSpaceDir'
