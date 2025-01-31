@@ -34,15 +34,17 @@ jobs:
         AppDir='SpaceNerdsInSpaceDir'
         mkdir -p $AppDir/usr/bin
         mkdir -p $AppDir/usr/lib
-        cp -r $SnisGitDir/bin $AppDir/usr
+        #cp -r $SnisGitDir/bin $AppDir/usr
         #cp -r $SnisGitDir/*.png $AppDir/usr/bin
-        cp $SnisGitDir/snis_launcher $AppDir/usr
-        cp -r $SnisGitDir/share $AppDir/usr
+        #cp $SnisGitDir/snis_launcher $AppDir/usr
+        #cp -r $SnisGitDir/share $AppDir/usr
+        #copy it all as there are tools everywhere
+        cp -r $SnisGitDir/* $AppDir/usr
         
+    - name: Get icons and desktop file
+      run: |        
         git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
         SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage'
-
-
         cp $SnisAppImageToolsDir/AppRun $AppDir
         cp $SnisAppImageToolsDir/icon.png $AppDir
         cp $SnisAppImageToolsDir/snis.desktop $AppDir
