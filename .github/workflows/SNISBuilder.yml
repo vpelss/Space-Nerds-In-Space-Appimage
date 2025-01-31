@@ -38,7 +38,7 @@ jobs:
         #cp -r $SnisGitDir/*.png $AppDir/usr/bin
         #cp $SnisGitDir/snis_launcher $AppDir/usr
         #cp -r $SnisGitDir/share $AppDir/usr
-        #copy it all as there are tools everywhere
+        #copy it all, as there are tools everywhere
         cp -r $SnisGitDir/* $AppDir/usr
         ls -l $AppDir/usr
         ls -l $AppDir/usr/bin
