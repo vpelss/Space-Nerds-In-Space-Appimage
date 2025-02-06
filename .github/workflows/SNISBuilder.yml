@@ -27,7 +27,10 @@ jobs:
         git clone --depth 1 https://github.com/smcameron/${SnisGitDir}.git
         #git checkout 991ea45f4a117e40cfb315e83389f360311c4850
         AppDir='SpaceNerdsInSpaceDir'
-        mkdir -p $AppDir/usr
+        mkdir -p $AppDir/usr/bin
+        mkdir -p $AppDir/usr/share
+        mkdir -p $AppDir/usr/lib
+        #mkdir -p $AppDir/usr
         cd $SnisGitDir    
         make PREFIX=$AppDir/usr install WITHVOICECHAT=no
         cd ..
