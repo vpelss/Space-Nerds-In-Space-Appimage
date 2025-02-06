@@ -56,10 +56,10 @@ jobs:
         chmod +x $AppDir/usr/snis_launcher
         chmod +x $AppDir/usr/bin/*
         chmod +x $AppDir/snis.desktop
-
-    #- name: Build
-      # Build your program with the given configuration
-      #run: |
+        
+        #- name: Build
+        # Build your program with the given configuration
+        #run: |
         #AppDir='SpaceNerdsInSpaceDir'
 
         # Build your program with the given configuration
