@@ -33,6 +33,8 @@ jobs:
         mkdir -p $AppDir/usr/share
         mkdir -p $AppDir/usr/lib
         ls -l 
+        ls -l $AppDir
+        ls -l $AppDir/usr
         #mkdir -p $AppDir/usr
         cd $SnisGitDir    
         make PREFIX=$AppDir/usr install WITHVOICECHAT=no
