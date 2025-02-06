@@ -26,20 +26,20 @@ jobs:
         git clone --depth 1 https://github.com/smcameron/space-nerds-in-space.git
         #git checkout 991ea45f4a117e40cfb315e83389f360311c4850
         SnisGitDir='space-nerds-in-space'
-        cd $SnisGitDir
-        make WITHVOICECHAT=no
-        rm -r object_files
+        AppDir='SpaceNerdsInSpaceDir'
+        cd $SnisGitDir    
+        make PREFIX=$AppDir/usr install WITHVOICECHAT=no
         cd ..
         
         AppDir='SpaceNerdsInSpaceDir'
-        mkdir -p $AppDir/usr/bin
-        mkdir -p $AppDir/usr/lib
+        #mkdir -p $AppDir/usr/bin
+        #mkdir -p $AppDir/usr/lib
         #cp -r $SnisGitDir/bin $AppDir/usr
         #cp -r $SnisGitDir/*.png $AppDir/usr/bin
         #cp $SnisGitDir/snis_launcher $AppDir/usr
         #cp -r $SnisGitDir/share $AppDir/usr
         #copy it all, as there are tools everywhere
-        cp -r $SnisGitDir/* $AppDir/usr
+        #cp -r $SnisGitDir/* $AppDir/usr
         ls -l $AppDir/usr
         ls -l $AppDir/usr/bin
        
