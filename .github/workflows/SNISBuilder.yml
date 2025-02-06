@@ -30,7 +30,9 @@ jobs:
         mkdir -p $AppDir/usr
         chmod 777 $AppDir/usr
         mkdir -p $AppDir/usr/bin
+        chmod 777 $AppDir/usr/bin
         mkdir -p $AppDir/usr/share
+        chmod 777 $AppDir/usr/share
         mkdir -p $AppDir/usr/lib
         ls -l 
         ls -l $AppDir
