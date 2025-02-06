@@ -23,15 +23,16 @@ jobs:
         sudo apt install libfuse2 #required to build AppImage
         sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
         sudo apt-get -y install libcurl4-gnutls-dev
-        git clone --depth 1 https://github.com/smcameron/space-nerds-in-space.git
+        SnisGitDir='space-nerds-in-space' # renmae to SnisGit
+        git clone --depth 1 https://github.com/smcameron/${SnisGitDir}.git
         #git checkout 991ea45f4a117e40cfb315e83389f360311c4850
-        SnisGitDir='space-nerds-in-space'
         AppDir='SpaceNerdsInSpaceDir'
+        mkdir -p $AppDir/usr
         cd $SnisGitDir    
         make PREFIX=$AppDir/usr install WITHVOICECHAT=no
         cd ..
         
-        AppDir='SpaceNerdsInSpaceDir'
+        #AppDir='SpaceNerdsInSpaceDir' 
         #mkdir -p $AppDir/usr/bin
         #mkdir -p $AppDir/usr/lib
         #cp -r $SnisGitDir/bin $AppDir/usr
@@ -44,7 +45,8 @@ jobs:
         ls -l $AppDir/usr/bin
        
         #Get icons and desktop file     
-        git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
+        SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage' #rename to SnisAppImageGit
+        git clone --depth 1 https://github.com/vpelss/${SnisAppImageToolsDir}.git
         SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage'
         cp $SnisAppImageToolsDir/AppRun $AppDir
         cp $SnisAppImageToolsDir/icon.png $AppDir
@@ -55,10 +57,12 @@ jobs:
         chmod +x $AppDir/usr/bin/*
         chmod +x $AppDir/snis.desktop
 
-    - name: Build
+    #- name: Build
       # Build your program with the given configuration
-      run: |
-        AppDir='SpaceNerdsInSpaceDir'
+      #run: |
+        #AppDir='SpaceNerdsInSpaceDir'
+
+        # Build your program with the given configuration
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         chmod +x linuxdeploy-x86_64.AppImage
     
