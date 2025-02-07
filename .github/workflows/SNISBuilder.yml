@@ -20,66 +20,42 @@ jobs:
 
     - name: Configure MakeIt
       run: |      
+
         sudo apt install libfuse2 #required to build AppImage
-        sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
-        sudo apt-get -y install libcurl4-gnutls-dev
-        SnisGitDir='space-nerds-in-space' # renmae to SnisGit
-        git clone --depth 1 https://github.com/smcameron/${SnisGitDir}.git
-        #git checkout 991ea45f4a117e40cfb315e83389f360311c4850
+
+        #util/install_dependencies # I said yes to all
+        sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils libcrypt-dev libcurl-dev libssl-dev
+
+        SnisGit='space-nerds-in-space'
         AppDir='SpaceNerdsInSpaceDir'
-        mkdir -p $AppDir/usr
-        chmod 777 $AppDir/usr
-        mkdir -p $AppDir/usr/bin
-        chmod 777 $AppDir/usr/bin
-        mkdir -p $AppDir/usr/share
-        chmod 777 $AppDir/usr/share
-        mkdir -p $AppDir/usr/lib
-        ls -l 
-        ls -l $AppDir
-        ls -l $AppDir/usr
-        #mkdir -p $AppDir/usr
-        cd $SnisGitDir    
-        make PREFIX=$AppDir/usr install WITHVOICECHAT=no
+        SnisAppImageToolsGit='Space-Nerds-In-Space-Appimage'
+
+        git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
+        cd $SnisGit
+        make DESTDIR=../$AppDir/usr/ install WITHVOICECHAT=no
         cd ..
+        mkdir -p $AppDir/usr/lib
         
-        #AppDir='SpaceNerdsInSpaceDir' 
-        #mkdir -p $AppDir/usr/bin
-        #mkdir -p $AppDir/usr/lib
-        #cp -r $SnisGitDir/bin $AppDir/usr
-        #cp -r $SnisGitDir/*.png $AppDir/usr/bin
-        #cp $SnisGitDir/snis_launcher $AppDir/usr
-        #cp -r $SnisGitDir/share $AppDir/usr
-        #copy it all, as there are tools everywhere
-        #cp -r $SnisGitDir/* $AppDir/usr
-        ls -l $AppDir/usr
-        ls -l $AppDir/usr/bin
-       
-        #Get icons and desktop file     
-        SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage' #rename to SnisAppImageGit
-        git clone --depth 1 https://github.com/vpelss/${SnisAppImageToolsDir}.git
-        SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage'
-        cp $SnisAppImageToolsDir/AppRun $AppDir
-        cp $SnisAppImageToolsDir/icon.png $AppDir
-        cp $SnisAppImageToolsDir/snis.desktop $AppDir
+        git clone --depth 1 https://github.com/vpelss/${SnisAppImageToolsGit}.git
+        cp $SnisAppImageToolsGit/AppRun $AppDir
+        cp $SnisAppImageToolsGit/icon.png $AppDir
+        cp $SnisAppImageToolsGit/snis.desktop $AppDir
+
         #set permissions
         chmod +x $AppDir/AppRun 
-        chmod +x $AppDir/usr/snis_launcher
+        chmod +x $AppDir/usr/bin/snis_launcher
         chmod +x $AppDir/usr/bin/*
         chmod +x $AppDir/snis.desktop
-        
-        #- name: Build
-        # Build your program with the given configuration
-        #run: |
-        #AppDir='SpaceNerdsInSpaceDir'
 
-        # Build your program with the given configuration
+        # get linuxdeploy's AppImage if you don’t have it
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         chmod +x linuxdeploy-x86_64.AppImage
-    
-        ARCH=x86_64 ./linuxdeploy-x86_64.AppImage --executable=$AppDir/usr/bin/snis_client --executable=$AppDir/usr/bin/check-endianness --executable=$AppDir/usr/bin/lsssgl --executable=$AppDir/usr/bin/snis_arduino --executable=$AppDir/usr/bin/snis_multiverse --executable=$AppDir/usr/bin/snis_server --executable=$AppDir/usr/bin/ssgl_server --appdir $AppDir --output appimage        
-    
+
+        ARCH=x86_64 ./linuxdeploy-x86_64.AppImage --executable=$AppDir/usr/bin/snis_client --executable=$AppDir/usr/bin/check-endianness --executable=$AppDir/usr/bin/lsssgl --executable=$AppDir/usr/bin/snis_arduino --executable=$AppDir/usr/bin/snis_multiverse --executable=$AppDir/usr/bin/snis_server --executable=$AppDir/usr/bin/ssgl_server --appdir $AppDir --output appimage
+
         chmod 777 Space_Nerds_in_Space-x86_64.AppImage
-        ls -l
+
+        #run it
         printf '0' |./Space_Nerds_in_Space-x86_64.AppImage
 
     - name: Upload Artifacts
