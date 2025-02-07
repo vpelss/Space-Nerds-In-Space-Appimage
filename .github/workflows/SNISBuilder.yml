@@ -34,18 +34,15 @@ jobs:
         #make does not move it on install
         cp  bin/check-endianness ../$AppDir/usr/bin/ 
         cd ..
-        mkdir -p $AppDir/usr/lib
         
+        mkdir -p $AppDir/usr/lib
+        mkdir -p $AppDir/usr/share/icons/hicolor/scalable
+        mkdir -p $AppDir/usr/share/applications
+
         git clone --depth 1 https://github.com/vpelss/${SnisAppImageToolsGit}.git
         cp $SnisAppImageToolsGit/AppRun $AppDir
-        cp $SnisAppImageToolsGit/icon.png $AppDir
-        cp $SnisAppImageToolsGit/snis.desktop $AppDir
-
-        #set permissions
-        chmod +x $AppDir/AppRun 
-        chmod +x $AppDir/usr/bin/snis_launcher
-        chmod +x $AppDir/usr/bin/*
-        chmod +x $AppDir/snis.desktop
+        cp $SnisAppImageToolsGit/icon.svg $AppDir/usr/share/icons/hicolor/scalable/apps
+        cp $SnisAppImageToolsGit/snis.desktop $AppDir/usr/share/applications
 
         # get linuxdeploy's AppImage if you don’t have it
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
