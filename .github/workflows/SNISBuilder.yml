@@ -31,6 +31,8 @@ jobs:
         git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
         cd $SnisGit
         make DESTDIR=../$AppDir/usr/ install WITHVOICECHAT=no
+        #make does not move it on install
+        cp  bin/check-endianness ../$AppDir/usr/bin/ 
         cd ..
         mkdir -p $AppDir/usr/lib
         
