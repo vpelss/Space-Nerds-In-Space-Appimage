@@ -36,7 +36,7 @@ jobs:
         cd ..
         
         mkdir -p $AppDir/usr/lib
-        mkdir -p $AppDir/usr/share/icons/hicolor/scalable
+        mkdir -p $AppDir/usr/share/icons/hicolor/scalable/apps
         mkdir -p $AppDir/usr/share/applications
 
         git clone --depth 1 https://github.com/vpelss/${SnisAppImageToolsGit}.git
