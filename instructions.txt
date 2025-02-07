@@ -5,38 +5,34 @@
 #As per the following:
 #https://smcameron.github.io/space-nerds-in-space/
 
+# https://www.reddit.com/r/spacesimgames/comments/1hlgdff/space_nerds_in_space_appimage/
+# https://old.reddit.com/r/SNIS/comments/1hjxbw0/snis_appimage/
+# https://www.patreon.com/posts/space-nerds-in-118468188
+
 sudo apt install libfuse2 #required to build AppImage
 
 #util/install_dependencies # I said yes to all
-sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
+sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils libcrypt-dev libcurl-dev libssl-dev
 
-git clone --depth 1 https://github.com/smcameron/space-nerds-in-space.git
-SnisGitDir='space-nerds-in-space'
-cd $SnisGitDir
-make
-make update-assets
+SnisGit='space-nerds-in-space'
+AppDir='SpaceNerdsInSpaceDir'
+SnisAppImageToolsGit='Space-Nerds-In-Space-Appimage'
+
+git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
+cd $SnisGit
+make DESTDIR=../$AppDir/usr/ install WITHVOICECHAT=no
+#make does not move it on install
+cp  bin/check-endianness ../$AppDir/usr/bin/ 
 cd ..
 
-AppDir='SpaceNerdsInSpaceDir'
-mkdir -p $AppDir/usr/bin
 mkdir -p $AppDir/usr/lib
-cp -r $SnisGitDir/bin $AppDir/usr
-#cp -r $SnisGitDir/*.png $AppDir/usr/bin
-cp $SnisGitDir/snis_launcher $AppDir/usr
-cp -r $SnisGitDir/share $AppDir/usr
+mkdir -p $AppDir/usr/share/icons/hicolor/scalable/apps
+mkdir -p $AppDir/usr/share/applications
 
-git clone --depth 1 https://github.com/vpelss/Space-Nerds-In-Space-Appimage.git
-SnisAppImageToolsDir='Space-Nerds-In-Space-Appimage'
-
-cp $SnisAppImageToolsDir/AppRun $AppDir
-cp $SnisAppImageToolsDir/icon.png $AppDir
-cp $SnisAppImageToolsDir/snis.desktop $AppDir
-
-#set permissions
-chmod +x $AppDir/AppRun 
-chmod +x $AppDir/usr/snis_launcher
-chmod +x $AppDir/usr/bin/*
-chmod +x $AppDir/snis.desktop
+git clone --depth 1 https://github.com/vpelss/${SnisAppImageToolsGit}.git
+cp $SnisAppImageToolsGit/AppRun $AppDir
+cp $SnisAppImageToolsGit/icon.svg $AppDir/usr/share/icons/hicolor/scalable/apps
+cp $SnisAppImageToolsGit/snis.desktop $AppDir/usr/share/applications
 
 # get linuxdeploy's AppImage if you don’t have it
 wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
@@ -48,3 +44,5 @@ chmod 777 Space_Nerds_in_Space-x86_64.AppImage
 
 #run it
 printf '0' |./Space_Nerds_in_Space-x86_64.AppImage
+
+
