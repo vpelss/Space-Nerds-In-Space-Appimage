@@ -6,8 +6,8 @@ echo ${HERE}
 EXEC="${HERE}/usr" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
 cd ${EXEC}
 echo ${EXEC}
-export SNIS_LOG_DIR=~/.local/share/space-nerds-in-space/snis_log_dir
-mkdir -p $SNIS_LOG_DIR 
-export SNIS_DB_DIR=~/.local/share/space-nerds-in-space/snis_db_dir
+#export SNIS_LOG_DIR=~/.local/share/space-nerds-in-space/snis_log_dir
+mkdir -p $SNIS_LOG_DIR a
+#export SNIS_DB_DIR=~/.local/share/space-nerds-in-space/snis_db_dir
 mkdir -p $SNIS_DB_DIR
-exec ./snis_launcher  #run our app
+exec bin/snis_launcher  #run our app
