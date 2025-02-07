@@ -20,12 +20,10 @@ jobs:
 
     - name: Configure MakeIt
       run: |      
-
         sudo apt install libfuse2 #required to build AppImage
-
-        #util/install_dependencies # I said yes to all
-        sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils libcrypt-dev libcurl-dev libssl-dev
-
+        sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
+        sudo apt-get -y install libcurl4-gnutls-dev
+        
         SnisGit='space-nerds-in-space'
         AppDir='SpaceNerdsInSpaceDir'
         SnisAppImageToolsGit='Space-Nerds-In-Space-Appimage'
