@@ -30,6 +30,8 @@ jobs:
 
         git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
         cd $SnisGit
+        ls -l ~/$AppDir/usr/
+        jjj
         make PREFIX=~/$AppDir/usr/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
         #make does not move it on install
         cp  bin/check-endianness ../$AppDir/usr/bin/ 
