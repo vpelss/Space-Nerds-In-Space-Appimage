@@ -30,11 +30,11 @@ jobs:
 
         git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
         cd $SnisGit
-        make PREFIX=~/$AppDir/usr/bin/ install WITHVOICECHAT=no
+        make PREFIX=~/$AppDir/usr/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
         #make does not move it on install
         cp  bin/check-endianness ../$AppDir/usr/bin/ 
         cd ..
-        
+
         mkdir -p $AppDir/usr/lib
         mkdir -p $AppDir/usr/share/icons/hicolor/scalable/apps
         mkdir -p $AppDir/usr/share/applications
@@ -48,7 +48,7 @@ jobs:
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         chmod +x linuxdeploy-x86_64.AppImage
 
-        ARCH=x86_64 ./linuxdeploy-x86_64.AppImage --executable=$AppDir/usr/bin/snis_client --executable=$AppDir/usr/bin/check-endianness --executable=$AppDir/usr/bin/lsssgl --executable=$AppDir/usr/bin/snis_arduino --executable=$AppDir/usr/bin/snis_multiverse --executable=$AppDir/usr/bin/snis_server --executable=$AppDir/usr/bin/ssgl_server --appdir $AppDir --output appimage
+        ARCH=x86_64 ./linuxdeploy-x86_64.AppImage --deploy-deps-only=$AppDir/usr/bin --appdir $AppDir --output appimage
 
         chmod 777 Space_Nerds_in_Space-x86_64.AppImage
 
