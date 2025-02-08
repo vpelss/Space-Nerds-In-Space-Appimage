@@ -10,4 +10,4 @@ echo ${EXEC}
 mkdir -p $SNIS_LOG_DIR a
 #export SNIS_DB_DIR=~/.local/share/space-nerds-in-space/snis_db_dir
 mkdir -p $SNIS_DB_DIR
-exec bin/snis_launcher  #run our app
+exec bin/bin/snis_launcher  #run our app
