@@ -33,7 +33,9 @@ jobs:
         ls -l ~
         pwd
         MyPwd=pwd
-        make PREFIX=$myPwd/../$AppDir/usr/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
+        ls -l ../
+        gfhgd
+        make PREFIX=../$AppDir/usr/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
         #make does not move it on install
         cp  bin/check-endianness ../$AppDir/usr/bin/ 
         cd ..
