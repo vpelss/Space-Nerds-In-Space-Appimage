@@ -4,6 +4,6 @@ GenericName=Space Nerds in Space
 Comment=Networked spaceship bridge simulator
 Exec=snis_launcher
 Icon=icon
-Terminal=false
+Terminal=true
 Type=Application
 Categories=Game;
