@@ -34,8 +34,8 @@ jobs:
         pwd
         MyPwd=pwd
         ls -l ../
-        #gfhgd
-        make PREFIX=../$AppDir/usr/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
+        GOHERE="/home/runner/work/Space-Nerds-In-Space-Appimage/Space-Nerds-In-Space-Appimage/"
+        make PREFIX=$GOHERE/$AppDir/usr/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
         #make does not move it on install
         cp  bin/check-endianness ../$AppDir/usr/bin/ 
         cd ..
