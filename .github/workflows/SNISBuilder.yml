@@ -30,10 +30,12 @@ jobs:
 
         git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
         cd $SnisGit
-        make PREFIX=../$AppDir/usr/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
+        make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
         #make does not move it on install
-        cp  bin/check-endianness ../$AppDir/usr/bin/ 
+        cp  bin/check-endianness ../$AppDir/usr/bin/bin/ 
         cd ..
+        # it is not where it needs to be
+        mv $AppDir/usr/bin/bin/snis_launcher $AppDir/usr/bin/snis_launcher
 
         mkdir -p $AppDir/usr/lib
         mkdir -p $AppDir/usr/share/icons/hicolor/scalable/apps
