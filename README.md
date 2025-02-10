@@ -10,7 +10,7 @@ I have created a Linux AppImage for Space Nerds In Space for those who can't com
 
 My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appimage/releases/tag/Newest
 
-Note: It must be started in a Linux terminal
+Note: It must be started in a Linux terminal. Making a launchable icon is possible, but will vary depending on your gui.
 
 - Download
 - open terminal at file path
