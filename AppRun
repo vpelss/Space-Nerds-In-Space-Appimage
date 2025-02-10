@@ -1,10 +1,10 @@
 #!/bin/bash
 SELF=$(readlink -f "$0") #will set SELF to our AppRun path with AppRun appended 
-echo ${SELF}
+echo "SELF: ${SELF}"
 HERE=${SELF%/*} #will set HERE to path without AppRun
-echo ${HERE}
+echo "HERE: ${HERE}"
 EXEC="${HERE}/usr" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
+echo "EXEC: ${EXEC}"
 cd ${EXEC}
-echo ${EXEC}
 export WAYLAND_DISPLAY=x11
-exec ./bin/snis_launcher  #run our app
+exec /bin/snis_launcher  #run our app
