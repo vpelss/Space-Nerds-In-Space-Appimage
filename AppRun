@@ -7,4 +7,4 @@ EXEC="${HERE}/usr" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
 cd ${EXEC}
 echo ${EXEC}
 export WAYLAND_DISPLAY=x11
-exec bin/snis_launcher  #run our app
+exec ./bin/snis_launcher  #run our app
