@@ -13,9 +13,12 @@ My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appi
 Note: It is easiest to start in a Linux terminal. Making a launchable icon is possible, but will vary depending on your gui. 
 
 - Download
-- open terminal at file path
-- chmod +x Space_Nerds_in_Space-x86_64.AppImage
-- ./Space_Nerds_in_Space-x86_64.AppImage
+- open a terminal at the file path
+- 
+```
+chmod +x Space_Nerds_in_Space-x86_64.AppImage
+./Space_Nerds_in_Space-x86_64.AppImage
+```
 
 Tested succesfuly on:
 - q4OS
