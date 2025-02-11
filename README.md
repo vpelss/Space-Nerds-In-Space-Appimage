@@ -14,7 +14,8 @@ Note: It is easiest to start in a Linux terminal. Making a launchable icon is po
 
 - Download
 - open a terminal at the file path
-- 
+
+  
 ```
 chmod +x Space_Nerds_in_Space-x86_64.AppImage
 ./Space_Nerds_in_Space-x86_64.AppImage
