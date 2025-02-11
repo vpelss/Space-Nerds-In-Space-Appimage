@@ -10,7 +10,7 @@ I have created a Linux AppImage for Space Nerds In Space for those who can't com
 
 My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appimage/releases/tag/Newest
 
-Note: It is easiest to start in a Linux terminal. Making a launchable icon is possible, but will vary depending on your gui.
+Note: It is easiest to start in a Linux terminal. Making a launchable icon is possible, but will vary depending on your gui. 
 
 - Download
 - open terminal at file path
@@ -23,6 +23,23 @@ Tested succesfuly on:
 - mint xfce
 - MiniOS
 - for distributions that are having issues, see https://github.com/vpelss/snis_flatpak/blob/main/README.md  You might need to install some libraries.
+
+Make a Desktop Icon
+
+If you save Space_Nerds_in_Space-x86_64.AppImage in ~/AppImages/Space_Nerds_in_Space-x86_64.AppImage, then you would place a desttop file here: ~/.local/share/applications/snis.desktop and your snis.desktop file might contain:
+
+```
+[Desktop Entry]
+Name=Space Nerds in Space
+GenericName=Space Nerds in Space
+Comment=Networked spaceship bridge simulator
+Exec=~/AppImages/Space_Nerds_in_Space-x86_64.AppImage
+Icon=icon
+Terminal=true
+Type=Application
+Categories=Game;
+```
+Your game icon should show in your gui menu under Game
 
 How it was built: [instructions.txt](https://github.com/vpelss/Space-Nerds-In-Space-Appimage/blob/main/instructions.txt)
 
