@@ -2,7 +2,7 @@
 Name=Space Nerds in Space
 GenericName=Space Nerds in Space
 Comment=Networked spaceship bridge simulator
-Exec=Space_Nerds_in_Space-x86_64.AppImage
+Exec=AppRun
 Icon=icon.svg
 Terminal=true
 Type=Application
