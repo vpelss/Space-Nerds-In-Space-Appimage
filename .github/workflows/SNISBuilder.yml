@@ -47,6 +47,7 @@ jobs:
         ln -s $AppDir/usr/share/icons/hicolor/scalable/apps/icon.svg .DirIcon
         cp $SnisAppImageToolsGit/icon.svg $AppDir
         cp $SnisAppImageToolsGit/snis.desktop $AppDir/usr/share/applications
+        cp $SnisAppImageToolsGit/snis.desktop $AppDir/usr/bin/share/applications
         cp $SnisAppImageToolsGit/snis.desktop $AppDir
 
         # get linuxdeploy's AppImage if you don’t have it
