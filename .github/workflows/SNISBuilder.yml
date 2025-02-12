@@ -44,7 +44,10 @@ jobs:
         git clone --depth 1 https://github.com/vpelss/${SnisAppImageToolsGit}.git
         cp $SnisAppImageToolsGit/AppRun $AppDir
         cp $SnisAppImageToolsGit/icon.svg $AppDir/usr/share/icons/hicolor/scalable/apps
+        ln -s $AppDir/usr/share/icons/hicolor/scalable/apps/icon.svg .DirIcon
+        cp $SnisAppImageToolsGit/icon.svg $AppDir
         cp $SnisAppImageToolsGit/snis.desktop $AppDir/usr/share/applications
+        cp $SnisAppImageToolsGit/snis.desktop $AppDir
 
         # get linuxdeploy's AppImage if you don’t have it
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
