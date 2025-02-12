@@ -13,7 +13,7 @@ My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appi
 Note: It is easiest to start in a Linux terminal. Making a launchable icon is possible, but will vary depending on your gui. 
 
 - Download
-- open a terminal at the file path
+- in a terminal run the following
 
   
 ```
