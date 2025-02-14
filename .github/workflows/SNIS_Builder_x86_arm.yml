@@ -28,7 +28,7 @@ jobs:
     - name: Install deps
       if: ${{ matrix.arch != 'x86_64' }}
       run: |
-        sudo apt -y install docker
+        #sudo apt -y install docker
         #dnf -y install docker
     - name: Set up QEMU
       if: ${{ matrix.arch != 'x86_64' }}
