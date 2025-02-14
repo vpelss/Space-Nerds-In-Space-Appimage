@@ -73,17 +73,16 @@ jobs:
         
     - name: keep going
       run: |      
-        if [${{ matrix.arch }} == 'x86_64']; then
+        if [${{ matrix.arch }} == 'x86_64']
            wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
            mv linuxdeploy-x86_64.AppImage linuxdeploy.AppImage
            chmod +x linuxdeploy.AppImage  
            echo "86 86 86 86 86 86 86 86"
-        else
+        if [${{ matrix.arch }} == 'aarch64']
            wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
            mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
            chmod +x linuxdeploy.AppImage  
            echo "arm arm arm arm arm arm arm arm "
-        fi
               
         ARCH=${{ matrix.arch }} ./linuxdeploy.AppImage --deploy-deps-only=$AppDir/usr/bin/bin --appdir $AppDir --output appimage
 
