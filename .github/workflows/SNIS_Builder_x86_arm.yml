@@ -70,13 +70,6 @@ jobs:
 
         # get linuxdeploy's AppImage if you don’t have it
         
-    - name: Set up QEMU
-      if: ${{ matrix.arch != 'x86_64' }}
-      id: qemu
-      uses: docker/setup-qemu-action@v2
-      with:
-        platforms: arm64
-
     - name: keep going
       run: |      
         if [${{ matrix.arch }} != 'x86_64']; then
