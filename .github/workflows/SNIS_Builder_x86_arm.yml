@@ -15,9 +15,27 @@ jobs:
     #runs-on: ubuntu-latest
     #container: centos:7
 
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+      # Don't fail the whole workflow if one architecture fails
+      fail-fast: false
+
     steps:
     - uses: actions/checkout@v4
 
+    # Docker is required by the docker/setup-qemu-action which enables emulation
+    - name: Install deps
+      if: ${{ matrix.arch != 'x86_64' }}
+      run: |
+        dnf -y install docker
+    - name: Set up QEMU
+      if: ${{ matrix.arch != 'x86_64' }}
+      id: qemu
+      uses: docker/setup-qemu-action@v2
+      with:
+        platforms: arm64
+        
     - name: Configure MakeIt
       run: |      
         sudo apt install libfuse2 #required to build AppImage
@@ -51,21 +69,38 @@ jobs:
         cp $SnisAppImageToolsGit/snis.desktop $AppDir
 
         # get linuxdeploy's AppImage if you don’t have it
-        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-        chmod +x linuxdeploy-x86_64.AppImage
+        
+    - name: Set up QEMU
+      if: ${{ matrix.arch != 'x86_64' }}
+      id: qemu
+      uses: docker/setup-qemu-action@v2
+      with:
+        platforms: arm64
 
-        ARCH=x86_64 ./linuxdeploy-x86_64.AppImage --deploy-deps-only=$AppDir/usr/bin/bin --appdir $AppDir --output appimage
+    - name: keep going
+      run: |      
+        if [${{ matrix.arch }} != 'x86_64']; then
+           wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+           mv linuxdeploy-x86_64.AppImage linuxdeploy.AppImage
+           chmod +x linuxdeploy.AppImage  
+        else
+           https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
+           mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
+           chmod +x linuxdeploy.AppImage  
+        fi
+              
+        ARCH=${{ matrix.arch }} ./linuxdeploy.AppImage --deploy-deps-only=$AppDir/usr/bin/bin --appdir $AppDir --output appimage
 
-        chmod 777 Space_Nerds_in_Space-x86_64.AppImage
+        chmod 777 Space_Nerds_in_Space-${{ matrix.arch }}.AppImage
 
         #run it
-        printf '0' |./Space_Nerds_in_Space-x86_64.AppImage
+        printf '0' |./Space_Nerds_in_Space-${{ matrix.arch }}.AppImage
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: Space_Nerds_in_Space-x86_64.AppImage 
-        path: Space_Nerds_in_Space-x86_64.AppImage 
+        name: Space_Nerds_in_Space-${{ matrix.arch }}.AppImage 
+        path: Space_Nerds_in_Space-${{ matrix.arch }}.AppImage 
  
     - name: upload binaries to release
       uses: softprops/action-gh-release@v2
