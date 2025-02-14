@@ -80,11 +80,11 @@ jobs:
         echo "86 86 86 86 86 86 86 86"
     - name: test arm
       if: ${{ matrix.arch }} == 'aarch64'
-        run: |
-          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
-          mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
-          chmod +x linuxdeploy.AppImage  
-          echo "arm arm arm arm arm arm arm arm "
+      run: |
+        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
+        mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
+        chmod +x linuxdeploy.AppImage  
+        echo "arm arm arm arm arm arm arm arm "
 
     - name: build it
         ARCH=${{ matrix.arch }} ./linuxdeploy.AppImage --deploy-deps-only=$AppDir/usr/bin/bin --appdir $AppDir --output appimage
