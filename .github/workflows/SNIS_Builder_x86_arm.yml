@@ -87,7 +87,7 @@ jobs:
         echo "arm arm arm arm arm arm arm arm "
 
     - name: build it
-      run: 
+      run: |
         ARCH=${{ matrix.arch }} ./linuxdeploy.AppImage --deploy-deps-only=$AppDir/usr/bin/bin --appdir $AppDir --output appimage
         chmod 777 Space_Nerds_in_Space-${{ matrix.arch }}.AppImage
         #test it
