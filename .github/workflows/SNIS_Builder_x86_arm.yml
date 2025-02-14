@@ -67,14 +67,14 @@ jobs:
         # get linuxdeploy's AppImage if you don’t have it
         
     - name: test86
-      if: ${ matrix.arch } == 'x86_64'
+      if: ${{ matrix.arch == 'x86_64' }} 
       run: |      
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         mv linuxdeploy-x86_64.AppImage linuxdeploy.AppImage
         chmod +x linuxdeploy.AppImage  
         echo "86 86 86 86 86 86 86 86"
     - name: test arm
-      if: ${ matrix.arch } == 'aarch64'
+      if: ${{ matrix.arch == 'aarch64' }}
       run: |
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
         mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
