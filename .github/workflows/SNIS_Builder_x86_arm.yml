@@ -11,7 +11,7 @@ jobs:
             RUNS_ON: ubuntu-24.04
             BUILD_TYPE: appimage
           - ARCH: aarch64
-            RUNS_ON: ubuntu-24.04-arm
+            RUNS_ON: ubuntu-22.04-arm
             BUILD_TYPE: appimage
       fail-fast: false
 
