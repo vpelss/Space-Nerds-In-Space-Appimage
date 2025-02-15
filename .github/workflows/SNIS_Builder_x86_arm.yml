@@ -33,7 +33,7 @@ jobs:
 
     name: SNIS ${{ matrix.BUILD_TYPE }} ${{ matrix.ARCH }}
     runs-on: ${{ matrix.RUNS_ON }}
-    container: 'centos:7'
+    #container: 'centos:7'
     #centos-7.9
     
     env:
@@ -74,6 +74,7 @@ jobs:
     - name: build SNIS and package
       run: |      
         echo ${{ matrix.ARCH}}
+        ldd
         sudo apt update
         sudo apt install libfuse2 #required to build AppImage
         sudo apt-get -y install build-essential portaudio19-dev libpng-dev libvorbis-dev libsdl2-dev libsdl2-2.0-0 liblua5.2-dev libglew-dev libttspico-utils sox espeak alsa-utils
