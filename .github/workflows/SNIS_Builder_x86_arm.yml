@@ -39,7 +39,7 @@ jobs:
       UPDATE: 1
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3 #v4 has glib issues
 
     - name: get linuxdeploy-x86_64.AppImage
       if: ${{ matrix.ARCH == 'x86_64' }} 
