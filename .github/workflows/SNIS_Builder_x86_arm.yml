@@ -1,7 +1,10 @@
 name: SNISBuilder_x86_arm
 
 on: workflow_dispatch
-    
+
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  
 jobs:
 
   login:
@@ -39,7 +42,7 @@ jobs:
       UPDATE: 1
       
     steps:
-    - uses: actions/checkout@v3 #v4 has glib issues
+    - uses: actions/checkout@v4 #v4 has glib issues
 
     - name: get linuxdeploy-x86_64.AppImage
       if: ${{ matrix.ARCH == 'x86_64' }} 
