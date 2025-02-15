@@ -27,6 +27,22 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: get linuxdeploy-x86_64.AppImage
+      if: ${{ matrix.ARCH == 'x86_64' }} 
+      run: |      
+        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+        mv linuxdeploy-x86_64.AppImage linuxdeploy.AppImage
+        chmod +x linuxdeploy.AppImage  
+        echo "86 86 86 86 86 86 86 86"
+    - name: get linuxdeploy-aarch64.AppImage
+      if: ${{ matrix.ARCH == 'aarch64' }}
+      run: |
+        #wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
+        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
+        mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
+        chmod +x linuxdeploy.AppImage  
+        echo "arm arm arm arm arm arm arm arm "
+
     # Docker is required by the docker/setup-qemu-action which enables emulation
    # - name: Set up QEMU
     #  if: ${{ matrix.arch == 'aarch64' }}
@@ -37,7 +53,7 @@ jobs:
       #with:
       #  platforms: arm64
             
-    - name: get libraries
+    - name: build SNIS and package
       run: |      
         echo ${{ matrix.ARCH}}
         sudo apt install libfuse2 #required to build AppImage
@@ -70,30 +86,10 @@ jobs:
         cp $SnisAppImageToolsGit/snis.desktop $AppDir/usr/bin/share/applications
         cp $SnisAppImageToolsGit/snis.desktop $AppDir
 
-        # get linuxdeploy's AppImage if you don’t have it
-        
-    - name: test86
-      if: ${{ matrix.ARCH == 'x86_64' }} 
-      run: |      
-        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-        mv linuxdeploy-x86_64.AppImage linuxdeploy.AppImage
-        chmod +x linuxdeploy.AppImage  
-        echo "86 86 86 86 86 86 86 86"
-    - name: test arm
-      if: ${{ matrix.ARCH == 'aarch64' }}
-      run: |
-        #wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
-        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
-        mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
-        chmod +x linuxdeploy.AppImage  
-        echo "arm arm arm arm arm arm arm arm "
-
-    - name: build it
-      run: |
         echo ${{ matrix.ARCH }}
+        echo "AppDir: $AppDir"
         ls -l $AppDir
         ARCH=${{ matrix.ARCH }} ./linuxdeploy.AppImage --deploy-deps-only=$AppDir/usr/bin/bin --appdir $AppDir --output appimage
-        #ARCH=x86_64 ./linuxdeploy.AppImage --deploy-deps-only=$AppDir/usr/bin/bin --appdir $AppDir --output appimage
 
         chmod 777 Space_Nerds_in_Space-${{ matrix.ARCH }}.AppImage
         #test it
