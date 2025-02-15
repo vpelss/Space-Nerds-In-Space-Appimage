@@ -17,7 +17,8 @@ jobs:
 
     name: SNIS ${{ matrix.BUILD_TYPE }} ${{ matrix.ARCH }}
     runs-on: ${{ matrix.RUNS_ON }}
-
+    container: centos-7.9
+    
     env:
       ARCH: ${{ matrix.ARCH }}
       BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
