@@ -21,12 +21,12 @@ jobs:
     # Docker is required by the docker/setup-qemu-action which enables emulation
     - name: Set up QEMU
       if: ${{ matrix.arch == 'aarch64' }}
-      id: qemu
-      uses: docker/setup-qemu-action@v2
-      with:
-        platforms: arm64
-    #- name: cont
-    #  if: always()
+      run: |
+        sudo apt -y install qemu-system-arm qemu-user-static
+      #id: qemu
+      #uses: docker/setup-qemu-action@v2
+      #with:
+      #  platforms: arm64
             
     - name: get libraries
       run: |      
@@ -73,7 +73,8 @@ jobs:
     - name: test arm
       if: ${{ matrix.arch == 'aarch64' }}
       run: |
-        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
+        #wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
+        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
         mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
         chmod +x linuxdeploy.AppImage  
         echo "arm arm arm arm arm arm arm arm "
