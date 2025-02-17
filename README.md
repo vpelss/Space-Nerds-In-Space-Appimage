@@ -8,7 +8,7 @@ https://smcameron.github.io/space-nerds-in-space/
 
 I have created a Linux AppImage for Space Nerds In Space for those who can't compile it.
 
-My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appimage/releases/tag/Newest
+My AppImage version is here: https://github.com/vpelss/Space-Nerds-In-Space-Appimage/releases/tag/download
 
 Note: It is easiest to start in a Linux terminal. Making a launchable icon is possible, but will vary depending on your gui. 
 
