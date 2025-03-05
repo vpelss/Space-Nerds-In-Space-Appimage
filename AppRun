@@ -5,7 +5,7 @@ HERE=${SELF%/*} #will set HERE to path without AppRun
 echo "HERE: ${HERE}"
 EXEC="${HERE}/usr/bin" #set path to bin folder. eg: /tmp/.mount_Bridge6DxuEO/usr/bin
 echo "EXEC: ${EXEC}"
-cd ${EXEC}
+cd ${EXEC}/bin
 ls -l
 export WAYLAND_DISPLAY=x11
-exec ./snis_launcher  #run our app
+exec ./snis_client  #run our app
