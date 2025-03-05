@@ -8,4 +8,4 @@ echo "EXEC: ${EXEC}"
 cd ${EXEC}/bin
 ls -l
 export WAYLAND_DISPLAY=x11
-exec ./snis_client  #run our app
+exec ./snis_client --fullscreen --auto-download-assets 
