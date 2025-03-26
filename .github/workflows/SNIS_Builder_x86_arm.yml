@@ -9,7 +9,7 @@ jobs:
       matrix:
         include:
           - ARCH: x86_64
-            RUNS_ON: ubuntu-24.04
+            RUNS_ON: ubuntu-22.04
             BUILD_TYPE: appimage
           - ARCH: aarch64
             RUNS_ON: ubuntu-22.04-arm
