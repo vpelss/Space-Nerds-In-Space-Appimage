@@ -30,13 +30,14 @@ jobs:
 
     - name: get linuxdeploy-x86_64.AppImage
       if: ${{ matrix.ARCH == 'x86_64' }} 
+      env:
+        SNIS_USE_GLES: ""
       run: |      
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         mv linuxdeploy-x86_64.AppImage linuxdeploy.AppImage
         chmod +x linuxdeploy.AppImage  
-      env:
-        SNIS_USE_GLES: ""
-       
+        echo $SNIS_USE_GLES
+      
     - name: get linuxdeploy-aarch64.AppImage
       if: ${{ matrix.ARCH == 'aarch64' }}
       env:
@@ -45,8 +46,7 @@ jobs:
         #wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-aarch64.AppImage
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
         mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
-        chmod +x linuxdeploy.AppImage  
-        
+        chmod +x linuxdeploy.AppImage    
         echo $SNIS_USE_GLES
         
     - name: build SNIS and package
@@ -65,23 +65,7 @@ jobs:
         git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
         cd $SnisGit
         make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes $SNIS_USE_GLES
-        #${{ env.SNIS_USE_GLES }}
 
-    - name: SNIS make x86_64
-      if: ${{ matrix.ARCH == 'x86_64' }} 
-      run: |          
-        cd $SnisGit
-        make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes $SNIS_USE_GLES
-        
-    - name: SNIS make aarch64       
-      if: ${{  matrix.ARCH == 'aarch64' }} 
-      run: |                  
-        cd $SnisGit
-        make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes USE_GLES=1
-
-    - name: continue SNIS and package
-      run: |            
-        
         #make does not move it on install
         cp  bin/check-endianness ../$AppDir/usr/bin/bin/ 
         cd ..
