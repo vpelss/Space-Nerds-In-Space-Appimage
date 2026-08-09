@@ -57,7 +57,17 @@ jobs:
 
         git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
         cd $SnisGit
+
+    - name: SNIS choose make based on arch
+      if: ${{ matrix.ARCH == 'x86_64' }} 
+      run: |                  
         make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes
+      if: ${{  matrix.ARCH == 'aarch64' }} 
+      run: |                  
+        make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes USE_GLES=1
+
+    - name: continue SNIS and package
+      run: |            
         #make does not move it on install
         cp  bin/check-endianness ../$AppDir/usr/bin/bin/ 
         cd ..
