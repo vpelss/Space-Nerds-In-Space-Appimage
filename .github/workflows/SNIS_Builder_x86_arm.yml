@@ -34,6 +34,8 @@ jobs:
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
         mv linuxdeploy-x86_64.AppImage linuxdeploy.AppImage
         chmod +x linuxdeploy.AppImage  
+      env:
+        SNIS_USE_GLES: ""
        
     - name: get linuxdeploy-aarch64.AppImage
       if: ${{ matrix.ARCH == 'aarch64' }}
@@ -42,6 +44,8 @@ jobs:
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
         mv linuxdeploy-aarch64.AppImage linuxdeploy.AppImage
         chmod +x linuxdeploy.AppImage  
+      env:
+        SNIS_USE_GLES: "USE_GLES=1"
         
     - name: build SNIS and package
       run: |      
@@ -58,7 +62,7 @@ jobs:
 
         git clone --depth 1 https://github.com/smcameron/${SnisGit}.git
         cd $SnisGit
-        # make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes ${{ env.SNIS_USE_GLES }}
+        make PREFIX=../$AppDir/usr/bin/ install DOWNLOAD_OPUS=yes WITHVOICECHAT=yes ${{ env.SNIS_USE_GLES }}
 
     - name: SNIS make x86_64
       if: ${{ matrix.ARCH == 'x86_64' }} 
